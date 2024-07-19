@@ -83,6 +83,16 @@ wpeutil shutdown
 
 9 - Execute ```rmdir C:\WinPE_amd64 /S /Q``` followed by ```copype amd64 C:\WinPE_amd64``` to copy installation files usable to make an ISO/USB/VHDX
 
+9.5 - (optional) Remove "Press any key to boot from CD or DVD..." prompt on startup
+
+For UEFI systems overwrite efisys.bin using the below command:
+
+```cp "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\efisys_noprompt.bin" "C:\WinPE_amd64\fwfiles\efisys.bin"```
+
+For BIOS (Legacy) systems:
+
+```del "C:\WinPE_amd64\media\Boot\bootfix.bin"```
+
 10 - (optional) Use the step described here to make an ISO https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive?view=windows-11#create-a-winpe-iso-dvd-or-cd
 
 11 - (optional) Use the step described here to make a VHDX https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-create-usb-bootable-drive?view=windows-11#create-a-windows-pe-vhd-to-use-with-hyper-v
