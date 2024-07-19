@@ -6,7 +6,9 @@ Please build this yourself if you intend to use this in production.
 
 Booting this will delete the problematic driver on any connected drives on the machine.
 
-The steps here will likely only work on physical hardware currently, as disks in Hyper-V will not be detected currently.
+This has been tested, and should work fine on most systems. You may need to inject drivers for things like RAID cards which are not supported in WinPE by default. Please refer to this link below for such systems.
+
+https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-and-remove-drivers-to-an-offline-windows-image?view=windows-11
 
 To make your own VHDX or ISO or USB: 
 
@@ -26,26 +28,46 @@ To make your own VHDX or ISO or USB:
 
 ```
 @echo off
-setlocal enabledelayedexpansion
-echo "The script for removing the CrowdStrike malformed kernel driver has started!"
+@cls
 
+echo "The script for removing the CrowdStrike malformed kernel driver has started!"
+echo LIST VOL>>VOLLIST.TXT
+diskpart /S VOLLIST.TXT>>VOLTEMP.TXT
+setlocal enabledelayedexpansion
+set "filePath=VOLTEMP.txt"
+set "assignlist=ASSIGN.txt"
+set "filePointer=%assignlist%"
+:: Initialize counter
+set /a volumeCount=0
+:: Read the file line by line
+for /f "tokens=* delims=" %%a in ('type "%filePath%"') do (
+    :: Check if the line starts with "Volume"
+    if "%%a" neq "" (
+        set "line=%%a"
+        :: Assuming the line ends with a space or end of line character
+        if "!line:~-1!"==" " (
+            echo SELECT VOL !volumeCount! >> "%filePointer%"
+            echo ASSIGN >> "%filePointer%"
+            set /a volumeCount+=1
+        )
+    )
+)
+:: Display the total count
+echo Number of volumes: !volumeCount!
+diskpart /S ASSIGN.TXT
 :: Define drive letters to check
 set "drives=A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
-
 :: Loop through all drive letters
 for %%i in (!drives!) do (
     set "drive=%%i:"
     echo Checking drive !drive! ...
-
     :: Navigate to the drivers folder
     pushd "!drive!\Windows\System32\drivers\CrowdStrike\" 2>nul && (
         :: Check for files matching the pattern
         for %%f in (C-00000291*.sys) do (
             echo Found file: %%f
-
             del %drive%\Windows\System32\drivers\CrowdStrike\%%f
         )
-
         popd
     ) || (
         echo Drive !drive! does not exist probably
