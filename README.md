@@ -4,6 +4,8 @@ Please test this extensively before using in production.
 
 Please build this yourself if you intend to use this in production.
 
+Estimated time spent reading, and following this is 30-60 minutes.
+
 Booting this will delete the problematic driver on any connected drives on the machine.
 
 This has been tested, and should work fine on most systems. You may need to inject drivers for things like RAID cards which are not supported in WinPE by default. Please refer to this link below for such systems.
