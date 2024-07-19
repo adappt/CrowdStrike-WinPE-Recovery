@@ -1,5 +1,7 @@
 # Recovery VHDX and ISO files for Crowdstrike kernel driver failure on 19/07/2024
 
+THIS STILL NEEDS MORE TESTING BEFORE IT SEES WIDE PRODUCTION USAGE
+
 You can either "trust me" and use the binaries I have posted at https://github.com/adappt/CrowdStrike-WinPE-Recovery/releases/tag/0.1 or you can "distrust me" (reccomended) and make you own as below:
 
 To make your own: (Note: These instructions are pretty rushed, but they should get the gist of it across, I will improve them!)
