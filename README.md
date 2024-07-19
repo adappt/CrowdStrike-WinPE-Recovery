@@ -8,7 +8,7 @@ Estimated time spent reading, and following this is 30-60 minutes.
 
 Booting this will delete the problematic driver on any connected drives on the machine.
 
-This has been tested, and should work fine on most systems. You may need to inject drivers for things like RAID cards which are not supported in WinPE by default. Please refer to this link below for such systems.
+This has been tested on UEFI systems only, and should work fine on most systems. You may need to inject drivers for things like RAID cards which are not supported in WinPE by default. Please refer to this link below for such systems.
 
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-and-remove-drivers-to-an-offline-windows-image?view=windows-11
 
