@@ -12,6 +12,8 @@ This has been tested on UEFI systems only, and should work fine on most systems.
 
 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-and-remove-drivers-to-an-offline-windows-image?view=windows-11
 
+This README is not the neatest, but it should be reasonably easy to understand and follow. The same applies to the batch script in this README.
+
 To make your own VHDX or ISO or USB: 
 
 1 - Download and install the Windows ADK from https://go.microsoft.com/fwlink/?linkid=2271337
