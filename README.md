@@ -6,6 +6,8 @@ Please build this yourself if you intend to use this in production.
 
 Booting this will delete the problematic driver on any connected drives on the machine.
 
+The steps here will likely only work on physical hardware currently, as disks in Hyper-V will not be detected currently.
+
 To make your own VHDX or ISO or USB: 
 
 1 - Download and install the Windows ADK from https://go.microsoft.com/fwlink/?linkid=2271337
